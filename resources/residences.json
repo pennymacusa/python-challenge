@@ -1,0 +1,35 @@
+[
+    {
+        "source": "$.applications[0].borrower.mailingAddress.addressStreetLine1",
+        "target": "$.reports[?(@.title == 'Residences Report')].residences[0].street"
+    },
+    {
+        "source": "$.applications[0].borrower.mailingAddress.addressCity",
+        "target": "$.reports[?(@.title == 'Residences Report')].residences[0].city"
+    },
+    {
+        "source": "$.applications[0].borrower.mailingAddress.addressState",
+        "target": "$.reports[?(@.title == 'Residences Report')].residences[0].state"
+    },
+    {
+        "source": "$.applications[0].borrower.mailingAddress.addressPostalCode",
+        "target": "$.reports[?(@.title == 'Residences Report')].residences[0].zip"
+    },
+
+    {
+        "source": "$.applications[0].coborrower.mailingAddress.addressStreetLine1",
+        "target": "$.reports[?(@.title == 'Residences Report')].residences[1].street"
+    },
+    {
+        "source": "$.applications[0].coborrower.mailingAddress.addressCity",
+        "target": "$.reports[?(@.title == 'Residences Report')].residences[1].city"
+    },
+    {
+        "source": "$.applications[0].coborrower.mailingAddress.addressState",
+        "target": "$.reports[?(@.title == 'Residences Report')].residences[1].state"
+    },
+    {
+        "source": "$.applications[0].coborrower.mailingAddress.addressPostalCode",
+        "target": "$.reports[?(@.title == 'Residences Report')].residences[1].zip"
+    }
+]

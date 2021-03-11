@@ -1,0 +1,34 @@
+{
+  "reports": [
+    {
+      "title": "Residences Report",
+      "residences": [
+        {
+          "street": "123 EXAMPLE PKWY.",
+          "city": "FLOWER MOUND",
+          "state": "TX",
+          "zip": "75028"
+        },
+        {
+          "street": "123 EXAMPLE PKWY.",
+          "city": "FLOWER MOUND",
+          "state": "TX",
+          "zip": "75028"
+        }
+      ]
+    },
+    {
+      "title": "Borrowers Report",
+      "borrowers": [
+        {
+          "first_name": "JANE",
+          "last_name": "DOE"
+        },
+        {
+          "first_name": "JOHN",
+          "last_name": "DOE"
+        }
+      ]
+    }
+  ]
+}

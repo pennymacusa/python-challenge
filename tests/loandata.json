@@ -1,0 +1,33 @@
+{
+    "applications": [
+        {
+            "borrower": {
+                "firstName": "JANE",
+                "lastName": "DOE",
+                "mailingAddress": {
+                    "addressStreetLine1": "123 EXAMPLE PKWY.",
+                    "addressCity": "FLOWER MOUND",
+                    "addressState": "TX",
+                    "addressPostalCode": "75028"
+                }
+            },
+            "coborrower": {
+                "firstName": "JOHN",
+                "lastName": "DOE",
+                "mailingAddress": {
+                    "addressStreetLine1": "123 EXAMPLE PKWY.",
+                    "addressCity": "FLOWER MOUND",
+                    "addressState": "TX",
+                    "addressPostalCode": "75028"
+                }
+            }
+        }
+    ],
+    "property": {
+        "streetAddress": "456 NEW HOME CT.",
+        "city": "FLOWER MOUND",
+        "state": "TX",
+        "postalCode": "75028",
+        "value": 368000
+    }
+}
