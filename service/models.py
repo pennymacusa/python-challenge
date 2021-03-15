@@ -351,7 +351,9 @@ class JSONFactory:
         self._manifest = manifest
 
 
+
     #Added Code
+
 
     def _address_validator(self):
         """
@@ -379,6 +381,7 @@ class JSONFactory:
 
 
 
+
     def _remove_duplicate_residences(self):
         """
         Remove duplicate residences
@@ -393,6 +396,21 @@ class JSONFactory:
 
 
 
+    def _create_shared_address_flag(self):
+        """
+        This method creates a new flag called "shared_address" to determine if the borrower and coborrower share
+        the same address. This method depends on the address_validator method from ticket [FTR] CC-01
+        to determine if the borrower and coborrower live together.
+        The borrower and coborrower live together if they both share the same address
+        """
+        if self._address_validator():
+            self._manifest._fdata.__setitem__(f"$.reports[?(@.title == 'Borrowers Report')].shared_address", True)
+        else:
+            self._manifest._fdata.__setitem__(f"$.reports[?(@.title == 'Borrowers Report')].shared_address", False)
+
+
+
+
     # Instance methods
     def get_projection(self):
         """Generate the projection for the given manifest.
@@ -404,6 +422,11 @@ class JSONFactory:
 
         """
         queries, record = [], {}
+
+
+        #call these methods before generatring report
+        self._create_shared_address_flag()
+
         self._remove_duplicate_residences()
         for path, value in self._manifest:
 

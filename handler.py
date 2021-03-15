@@ -50,6 +50,12 @@ def main(event, context=None):  # pylint: disable=unused-argument
     rules = [rule for _ in project.resources.values() for rule in _]
     logger.info('Service loaded rules: %s', json.dumps(rules, indent=2))
 
+    #Added new rule for [FTR] CC-02
+    rules.append({
+        "source": "$.reports[?(@.title == 'Borrowers Report')].shared_address",
+        "target": "$.reports[?(@.title == 'Borrowers Report')].shared_address"
+    })
+
     # Confirm event is valid EventBridge -> SQS payload
     loans = []
     for record in event.get('Records', [{}]):
