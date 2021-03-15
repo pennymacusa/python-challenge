@@ -70,7 +70,7 @@ def main(event, context=None):  # pylint: disable=unused-argument
             )
             continue
 
-    logger.info('Service recieved loans: %s', json.dumps(loans, indent=2))
+    logger.info('Service received loans: %s', json.dumps(loans, indent=2))
 
     # Generate Manifests
     reports = []
