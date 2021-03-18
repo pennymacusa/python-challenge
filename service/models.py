@@ -4,7 +4,6 @@ import logging
 from copy import copy
 from typing import Generator, List, Any
 
-
 # Logging setup
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -281,10 +280,10 @@ class JSONFactory:
                 conditions = [
                     tuple(
                         t.strip()
-                        .replace('@.', '')
-                        .replace('\'', '')
-                        .replace('"', '')
-                        .strip()
+                            .replace('@.', '')
+                            .replace('\'', '')
+                            .replace('"', '')
+                            .strip()
                         for t in s.strip().split('==')
                     )
                     for s in query[2:-1].split('&&')
@@ -361,14 +360,47 @@ class JSONFactory:
 
         """
         queries, record = [], {}
-        for path, value in self._manifest:
+        residence_report_str = "$.reports[?(@.title == 'Residences Report')]"
+
+        # Filtering out all the residence report object
+        items_in_manifest = [item_in_manifest for item_in_manifest in self._manifest.items if residence_report_str in
+                             item_in_manifest]
+        count_of_items_in_manifest = len(items_in_manifest)
+
+        # Since we just have 4 fields in addresses in the output report we are dividing it by 4
+        count_for_iteration = int(count_of_items_in_manifest / 4)
+        data = self._manifest.items
+        values_list = []
+
+        # Iterating over all the addresses and adding unique values to values_list object
+        for i in range(count_for_iteration):
+            str_to_add = ""
+            items_to_remove = []
+            for j in range(4):
+                str_to_add = str_to_add + str(data[items_in_manifest[j]])
+                items_to_remove.append(items_in_manifest[j])
+            if str_to_add in values_list:
+                for k in range(4):
+                    del data[items_in_manifest[k]]
+            else:
+                values_list.append(str_to_add)
+            for item_to_remove in items_to_remove:
+                items_in_manifest.remove(item_to_remove)
+
+        for path in data:
 
             # Prioritize non-queries before queries
             if '?' in path:
-                queries.append((path, value))
+                queries.append((path, data[path]))
                 continue
 
-            self.insert_value(path, value, record)
+            self.insert_value(path, data[path], record)
+        # If we have only one item in value_list, then we know borrowers and co-borrowers are same
+        # Creating "true" value for shared_address
+        if len(values_list) > 1:
+            queries.append(("$.reports[?(@.title == 'Borrowers Report')].shared_address", "false"))
+        else:
+            queries.append(("$.reports[?(@.title == 'Borrowers Report')].shared_address", "true"))
 
         for path, value in queries:
             self.insert_query(path, value, record)
