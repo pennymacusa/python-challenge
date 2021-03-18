@@ -354,30 +354,24 @@ class JSONFactory:
 
     #Added Code
 
-
     def _address_validator(self):
         """
-        This method compares the borrower and co-borrowers residence addresses.
+        This method compares the borrower's and co-borrower's residence addresses.
         It checks if the residence addresses are the same.
         The residence addresses are the same if the street, city, state, and zip are the same.
         """
-        borrower = 0
-        coborrower = 1
-        is_same_street = self._manifest.items[f"$.reports[?(@.title == 'Residences Report')].residences[{borrower}].street"] \
-        == self._manifest.items[f"$.reports[?(@.title == 'Residences Report')].residences[{coborrower}].street"]
+        data_length = len(self._manifest.data['applications'])
 
-        is_same_city = self._manifest.items[f"$.reports[?(@.title == 'Residences Report')].residences[{borrower}].city"] \
-        == self._manifest.items[f"$.reports[?(@.title == 'Residences Report')].residences[{coborrower}].city"]
-
-        is_same_state = self._manifest.items[f"$.reports[?(@.title == 'Residences Report')].residences[{borrower}].state"] \
-        == self._manifest.items[f"$.reports[?(@.title == 'Residences Report')].residences[{coborrower}].state"]
-
-        is_same_zip = self._manifest.items[f"$.reports[?(@.title == 'Residences Report')].residences[{borrower}].zip"] \
-        == self._manifest.items[f"$.reports[?(@.title == 'Residences Report')].residences[{coborrower}].zip"]
-
-        return is_same_street and is_same_city and is_same_state and is_same_zip
-
-
+        for i in range(data_length):
+            is_same_street = self._manifest._fdata.get(f"$.applications[{i}].borrower.mailingAddress.addressStreetLine1") \
+            == self._manifest._fdata.get(f"$.applications[{i}].coborrower.mailingAddress.addressStreetLine1")
+            is_same_state = self._manifest._fdata.get(f"$.applications[{i}].borrower.mailingAddress.addressState") \
+            == self._manifest._fdata.get(f"$.applications[{i}].coborrower.mailingAddress.addressState")
+            is_same_city = self._manifest._fdata.get(f"$.applications[{i}].borrower.mailingAddress.addressCity") \
+            == self._manifest._fdata.get(f"$.applications[{i}].coborrower.mailingAddress.addressCity")
+            is_same_zip = self._manifest._fdata.get(f"$.applications[{i}].borrower.mailingAddress.addressPostalCode") \
+            == self._manifest._fdata.get(f"$.applications[{i}].coborrower.mailingAddress.addressPostalCode")
+        return is_same_street and is_same_state and is_same_city and is_same_zip
 
 
 
@@ -388,11 +382,13 @@ class JSONFactory:
         if the borrower's residence is the same as the coborrowers residence
         Part of ticket [FTR] CC-01
         """
-        if self._address_validator():
-            self._manifest._fdata.pop("$.applications[0].coborrower.mailingAddress.addressStreetLine1")
-            self._manifest._fdata.pop("$.applications[0].coborrower.mailingAddress.addressState")
-            self._manifest._fdata.pop("$.applications[0].coborrower.mailingAddress.addressPostalCode")
-            self._manifest._fdata.pop("$.applications[0].coborrower.mailingAddress.addressCity")
+        data_length = len(self._manifest.data['applications'])
+        for i in range(data_length):
+            if self._address_validator():
+                self._manifest._fdata.pop(f"$.applications[{i}].coborrower.mailingAddress.addressStreetLine1")
+                self._manifest._fdata.pop(f"$.applications[{i}].coborrower.mailingAddress.addressState")
+                self._manifest._fdata.pop(f"$.applications[{i}].coborrower.mailingAddress.addressPostalCode")
+                self._manifest._fdata.pop(f"$.applications[{i}].coborrower.mailingAddress.addressCity")
 
 
 
@@ -411,6 +407,7 @@ class JSONFactory:
 
 
 
+
     # Instance methods
     def get_projection(self):
         """Generate the projection for the given manifest.
@@ -422,14 +419,10 @@ class JSONFactory:
 
         """
         queries, record = [], {}
-
-
-        #call these methods before generatring report
+        #call these methods before generating projection
         self._create_shared_address_flag()
-
         self._remove_duplicate_residences()
         for path, value in self._manifest:
-
             # Prioritize non-queries before queries
             if '?' in path:
                 queries.append((path, value))
@@ -439,5 +432,6 @@ class JSONFactory:
 
         for path, value in queries:
             self.insert_query(path, value, record)
+
 
         return record
