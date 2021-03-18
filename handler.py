@@ -79,7 +79,7 @@ def main(event, context=None):  # pylint: disable=unused-argument
     logger.info('Service received loans: %s', json.dumps(loans, indent=2))
     #added bug fix for CC-03
 
-    """
+
     applications = loans[0]['applications']
     applications_size = len(applications)
     #load application rules
@@ -101,11 +101,8 @@ def main(event, context=None):  # pylint: disable=unused-argument
             rules.append({'source':f"$.applications[{i}].borrower.lastName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i}].last_name" })
             rules.append({'source':f"$.applications[{i}].coborrower.firstName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i+1}].first_name" })
             rules.append({'source':f"$.applications[{i}].coborrower.lastName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i+1}].last_name" })
-            rules.append({
-                "source": "$.reports[?(@.title == 'Borrowers Report')].shared_address",
-                "target": "$.reports[?(@.title == 'Borrowers Report')].shared_address"
-            })
-    """
+            
+
     # Generate Manifests
     reports = []
     for loan in loans:
