@@ -77,16 +77,16 @@ def main(event, context=None):  # pylint: disable=unused-argument
             continue
 
     logger.info('Service received loans: %s', json.dumps(loans, indent=2))
+    """
     #added bug fix for CC-03
-
-
     applications = loans[0]['applications']
     applications_size = len(applications)
     #load application rules
     application_rules = [rule['source'] for rule in rules]
     #add new rules based on size of applications
+
     for i in range(applications_size):
-        if f"$.applications[{i}]" not in application_rules:
+        if f"$.applications[{i}].borrower" not in application_rules:
             #Add multiple residences in report
             rules.append({'source': f"$.applications[{i}].borrower.mailingAddress.addressStreetLine1",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i}].street"})
             rules.append({'source': f"$.applications[{i}].borrower.mailingAddress.addressState",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i}].state"})
@@ -101,7 +101,8 @@ def main(event, context=None):  # pylint: disable=unused-argument
             rules.append({'source':f"$.applications[{i}].borrower.lastName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i}].last_name" })
             rules.append({'source':f"$.applications[{i}].coborrower.firstName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i+1}].first_name" })
             rules.append({'source':f"$.applications[{i}].coborrower.lastName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i+1}].last_name" })
-            
+
+    """
 
     # Generate Manifests
     reports = []
