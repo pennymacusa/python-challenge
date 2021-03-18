@@ -87,15 +87,6 @@ def main(event, context=None):  # pylint: disable=unused-argument
 
     for i in range(applications_size):
         if f"$.applications[{i}].borrower" not in application_rules:
-            #Add multiple residences in report
-            rules.append({'source': f"$.applications[{i}].borrower.mailingAddress.addressStreetLine1",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i}].street"})
-            rules.append({'source': f"$.applications[{i}].borrower.mailingAddress.addressState",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i}].state"})
-            rules.append({'source': f"$.applications[{i}].borrower.mailingAddress.addressCity",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i}].city"})
-            rules.append({'source': f"$.applications[{i}].borrower.mailingAddress.addressPostalCode",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i}].zip"})
-            rules.append({'source': f"$.applications[{i}].coborrower.mailingAddress.addressStreetLine1",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i+1}].street"})
-            rules.append({'source': f"$.applications[{i}].coborrower.mailingAddress.addressState",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i+1}].state"})
-            rules.append({'source': f"$.applications[{i}].coborrower.mailingAddress.addressCity",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i+1}].city"})
-            rules.append({'source': f"$.applications[{i}].coborrower.mailingAddress.addressPostalCode",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i+1}].zip"})
             #Add multiple borrowers in report
             rules.append({'source':f"$.applications[{i}].borrower.firstName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i}].first_name" })
             rules.append({'source':f"$.applications[{i}].borrower.lastName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i}].last_name" })
