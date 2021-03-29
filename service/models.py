@@ -354,23 +354,21 @@ class JSONFactory:
 
     #Added Code
 
-    def _address_validator(self):
+    def _address_validator(self,index):
         """
         This method compares the borrower's and co-borrower's residence addresses.
         It checks if the residence addresses are the same.
         The residence addresses are the same if the street, city, state, and zip are the same.
         """
-        data_length = len(self._manifest.data['applications'])
+        is_same_street = self._manifest._fdata.get(f"$.applications[{index}].borrower.mailingAddress.addressStreetLine1") \
+        == self._manifest._fdata.get(f"$.applications[{index}].coborrower.mailingAddress.addressStreetLine1")
+        is_same_state = self._manifest._fdata.get(f"$.applications[{index}].borrower.mailingAddress.addressState") \
+        == self._manifest._fdata.get(f"$.applications[{index}].coborrower.mailingAddress.addressState")
+        is_same_city = self._manifest._fdata.get(f"$.applications[{index}].borrower.mailingAddress.addressCity") \
+        == self._manifest._fdata.get(f"$.applications[{index}].coborrower.mailingAddress.addressCity")
+        is_same_zip = self._manifest._fdata.get(f"$.applications[{index}].borrower.mailingAddress.addressPostalCode") \
+        == self._manifest._fdata.get(f"$.applications[{index}].coborrower.mailingAddress.addressPostalCode")
 
-        for i in range(data_length):
-            is_same_street = self._manifest._fdata.get(f"$.applications[{i}].borrower.mailingAddress.addressStreetLine1") \
-            == self._manifest._fdata.get(f"$.applications[{i}].coborrower.mailingAddress.addressStreetLine1")
-            is_same_state = self._manifest._fdata.get(f"$.applications[{i}].borrower.mailingAddress.addressState") \
-            == self._manifest._fdata.get(f"$.applications[{i}].coborrower.mailingAddress.addressState")
-            is_same_city = self._manifest._fdata.get(f"$.applications[{i}].borrower.mailingAddress.addressCity") \
-            == self._manifest._fdata.get(f"$.applications[{i}].coborrower.mailingAddress.addressCity")
-            is_same_zip = self._manifest._fdata.get(f"$.applications[{i}].borrower.mailingAddress.addressPostalCode") \
-            == self._manifest._fdata.get(f"$.applications[{i}].coborrower.mailingAddress.addressPostalCode")
         return is_same_street and is_same_state and is_same_city and is_same_zip
 
 
@@ -384,7 +382,7 @@ class JSONFactory:
         """
         data_length = len(self._manifest.data['applications'])
         for i in range(data_length):
-            if self._address_validator():
+            if self._address_validator(i):
                 self._manifest._fdata.pop(f"$.applications[{i}].coborrower.mailingAddress.addressStreetLine1")
                 self._manifest._fdata.pop(f"$.applications[{i}].coborrower.mailingAddress.addressState")
                 self._manifest._fdata.pop(f"$.applications[{i}].coborrower.mailingAddress.addressPostalCode")
@@ -399,10 +397,12 @@ class JSONFactory:
         to determine if the borrower and coborrower live together.
         The borrower and coborrower live together if they both share the same address
         """
-        if self._address_validator():
-            self._manifest._fdata.__setitem__(f"$.reports[?(@.title == 'Borrowers Report')].shared_address", True)
-        else:
-            self._manifest._fdata.__setitem__(f"$.reports[?(@.title == 'Borrowers Report')].shared_address", False)
+        data_length = len(self._manifest.data['applications'])
+        for i in range(data_length):
+            if self._address_validator(i):
+                self._manifest._fdata.__setitem__(f"$.applications[{i}].shared_address", True)
+            else:
+                self._manifest._fdata.__setitem__(f"$.applications[{i}].shared_address", False)
 
 
 
