@@ -68,8 +68,8 @@
         },
         {
           "borrower": {
-            "firstName": "Jack",
-            "lastName": "Doe",
+            "firstName": "JACK",
+            "lastName": "DOE",
             "mailingAddress": {
               "addressStreetLine1": "555 PARK AVE.",
               "addressCity": "DALLAS",
@@ -78,8 +78,8 @@
             }
           },
           "coborrower": {
-            "firstName": "Jill",
-            "lastName": "Doe",
+            "firstName": "JILL",
+            "lastName": "DOE",
             "mailingAddress": {
               "addressStreetLine1": "123 PARK AVE.",
               "addressCity": "DALLAS",
@@ -90,8 +90,8 @@
         },
         {
           "borrower": {
-            "firstName": "John",
-            "lastName": "Smith",
+            "firstName": "JOHN",
+            "lastName": "SMITH",
             "mailingAddress": {
               "addressStreetLine1": "249 CENTRAL PKWY",
               "addressCity": "NEW YORK CITY",
@@ -100,8 +100,8 @@
             }
           },
           "coborrower": {
-            "firstName": "Jane",
-            "lastName": "Smith",
+            "firstName": "JANE",
+            "lastName": "SMITH",
             "mailingAddress": {
               "addressStreetLine1": "249 CENTRAL PKWY",
               "addressCity": "NEW YORK CITY",
@@ -113,8 +113,8 @@
         },
         {
           "borrower": {
-            "firstName": "Bruce",
-            "lastName": "Wayne",
+            "firstName": "BRUCE",
+            "lastName": "WAYNE",
             "mailingAddress": {
               "addressStreetLine1": "155 GOTHAM ST",
               "addressCity": "GOTHAM",
@@ -123,8 +123,8 @@
             }
           },
           "coborrower": {
-            "firstName": "Clark",
-            "lastName": "Kent",
+            "firstName": "CLARK",
+            "lastName": "KENT",
             "mailingAddress": {
               "addressStreetLine1": "222 METRO ST",
               "addressCity": "METROPOLIS",
@@ -135,8 +135,8 @@
         },
         {
           "borrower": {
-            "firstName": "Tony",
-            "lastName": "Stark",
+            "firstName": "TONY",
+            "lastName": "STARK",
             "mailingAddress": {
               "addressStreetLine1": "255 STARK ST",
               "addressCity": "NEW YORK CITY",
@@ -145,8 +145,8 @@
             }
           },
           "coborrower": {
-            "firstName": "Peter",
-            "lastName": "Parker",
+            "firstName": "PETER",
+            "lastName": "PARKER",
             "mailingAddress": {
               "addressStreetLine1": "955 QUEENS ST",
               "addressCity": "NEW YORK CITY",
@@ -157,8 +157,8 @@
         },
         {
           "borrower": {
-            "firstName": "Sherlock",
-            "lastName": "Holmes",
+            "firstName": "SHERLOCK",
+            "lastName": "HOLMES",
             "mailingAddress": {
               "addressStreetLine1": "221B BAKER STREET",
               "addressCity": "LONDON",
@@ -167,8 +167,8 @@
             }
           },
           "coborrower": {
-            "firstName": "John",
-            "lastName": "Watson",
+            "firstName": "JOHN",
+            "lastName": "WATSON",
             "mailingAddress": {
               "addressStreetLine1": "221B BAKER STREET",
               "addressCity": "LONDON",
@@ -179,8 +179,8 @@
         },
         {
           "borrower": {
-            "firstName": "Jack",
-            "lastName": "Smith",
+            "firstName": "JACK",
+            "lastName": "SMITH",
             "mailingAddress": {
               "addressStreetLine1": "111 KINGS ST",
               "addressCity": "NEW YORK CITY",
@@ -189,8 +189,8 @@
             }
           },
           "coborrower": {
-            "firstName": "Jill",
-            "lastName": "Smith",
+            "firstName": "JILL",
+            "lastName": "SMITH",
             "mailingAddress": {
               "addressStreetLine1": "111 KINGS ST",
               "addressCity": "NEW YORK CITY",
@@ -201,8 +201,8 @@
         },
         {
           "borrower": {
-            "firstName": "Robert",
-            "lastName": "Johnson",
+            "firstName": "ROBERT",
+            "lastName": "JOHNSON",
             "mailingAddress": {
               "addressStreetLine1": "117 HARRISON AVE",
               "addressCity": "JERSEY CITY",
@@ -211,8 +211,8 @@
             }
           },
           "coborrower": {
-            "firstName": "Paul",
-            "lastName": "Morrison",
+            "firstName": "PAUL",
+            "lastName": "MORRISON",
             "mailingAddress": {
               "addressStreetLine1": "275 JOHNSON ST",
               "addressCity": "PHILADELPHIA",
@@ -223,8 +223,8 @@
         },
         {
           "borrower": {
-            "firstName": "Alexander",
-            "lastName": "Hamilton",
+            "firstName": "ALEXANDER",
+            "lastName": "HAMILTON",
             "mailingAddress": {
               "addressStreetLine1": "555 HAMILTON ST",
               "addressCity": "NEW YORK CITY",
@@ -233,8 +233,8 @@
             }
           },
           "coborrower": {
-            "firstName": "John",
-            "lastName": "Laurens",
+            "firstName": "JOHN",
+            "lastName": "LAURENS",
             "mailingAddress": {
               "addressStreetLine1": "555 HAMILTON ST",
               "addressCity": "NEW YORK CITY",
@@ -245,8 +245,8 @@
         },
         {
           "borrower": {
-            "firstName": "George",
-            "lastName": "Washington",
+            "firstName": "GEORGE",
+            "lastName": "WASHINGTON",
             "mailingAddress": {
               "addressStreetLine1": "125 WILLIAMS ST",
               "addressCity": "WILLIAMSBURG",
@@ -255,8 +255,8 @@
             }
           },
           "coborrower": {
-            "firstName": "Abraham",
-            "lastName": "Lincoln",
+            "firstName": "ABRAHAM",
+            "lastName": "LINCOLN",
             "mailingAddress": {
               "addressStreetLine1": "155 CHERRYTREE ST",
               "addressCity": "CHICAGO",
@@ -267,8 +267,8 @@
         },
         {
           "borrower": {
-            "firstName": "Alan",
-            "lastName": "Turing",
+            "firstName": "ALAN",
+            "lastName": "TURING",
             "mailingAddress": {
               "addressStreetLine1": "915 EUCLID AVE",
               "addressCity": "PRINCETON",
@@ -277,8 +277,8 @@
             }
           },
           "coborrower": {
-            "firstName": "Albert",
-            "lastName": "Einstein",
+            "firstName": "ALBERT",
+            "lastName": "EINSTEIN",
             "mailingAddress": {
               "addressStreetLine1": "915 EUCLID AVE",
               "addressCity": "PRINCETON",
@@ -289,8 +289,8 @@
         },
         {
           "borrower": {
-            "firstName": "Elon",
-            "lastName": "Musk",
+            "firstName": "ELON",
+            "lastName": "MUSK",
             "mailingAddress": {
               "addressStreetLine1": "999 ROCKET ST",
               "addressCity": "AUSTIN",
@@ -299,8 +299,8 @@
             }
           },
           "coborrower": {
-            "firstName": "Larry",
-            "lastName": "Page",
+            "firstName": "LARRY",
+            "lastName": "PAGE",
             "mailingAddress": {
               "addressStreetLine1": "314 MOUNTAIN AVE",
               "addressCity": "MOUNTAIN VIEW",
@@ -311,8 +311,8 @@
         },
         {
           "borrower": {
-            "firstName": "Lebron",
-            "lastName": "James",
+            "firstName": "LEBRON",
+            "lastName": "JAMES",
             "mailingAddress": {
               "addressStreetLine1": "815 SUNFLOWER AVE",
               "addressCity": "LOS ANGELES",
@@ -321,8 +321,8 @@
             }
           },
           "coborrower": {
-            "firstName": "Michael",
-            "lastName": "Jordan",
+            "firstName": "MICHAEL",
+            "lastName": "JORDAN",
             "mailingAddress": {
               "addressStreetLine1": "815 SUNFLOWER AVE",
               "addressCity": "LOS ANGELES",
@@ -333,8 +333,8 @@
         },
         {
           "borrower": {
-            "firstName": "Thomas",
-            "lastName": "Edison",
+            "firstName": "THOMAS",
+            "lastName": "EDISON",
             "mailingAddress": {
               "addressStreetLine1": "199 GLENMONT AVE",
               "addressCity": "WEST ORANGE",
@@ -343,8 +343,8 @@
             }
           },
           "coborrower": {
-            "firstName": "Nikola",
-            "lastName": "Tesla",
+            "firstName": "NIKOLA",
+            "lastName": "TESLA",
             "mailingAddress": {
               "addressStreetLine1": "481 8TH AVE",
               "addressCity": "NEW YORK CITY",
