@@ -100,7 +100,19 @@ def main(event, context=None):  # pylint: disable=unused-argument
             rules.append({'source':f"$.applications[{i}].borrower.lastName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i}].last_name" })
             rules.append({'source':f"$.applications[{i}].coborrower.firstName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i+1}].first_name" })
             rules.append({'source':f"$.applications[{i}].coborrower.lastName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i+1}].last_name" })
-
+            #borrowers and coborrowers both have a shared address flag
+            #each borrower and coborrower share a shared_address flag.
+            #each borrower's shared address flag matches each respective coborrower's shared address flag
+            #in other words, each borrower will share the same shared address flag boolean value
+            # as the borrower's respective coborrower
+            rules.append({
+                "source": f"$.applications[{i}].shared_address",
+                "target": f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i}].shared_address"
+            })
+            rules.append({
+                    "source": f"$.applications[{i}].shared_address",
+                    "target": f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i+1}].shared_address"
+            })
     # Generate Manifests
     reports = []
     for loan in loans:
