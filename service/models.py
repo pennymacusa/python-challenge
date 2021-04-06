@@ -350,6 +350,63 @@ class JSONFactory:
     def __init__(self, manifest: JSONManifest):
         self._manifest = manifest
 
+
+
+    #Added Code
+
+    def _address_validator(self,index):
+        """
+        This method compares the borrower's and co-borrower's residence addresses.
+        It checks if the residence addresses are the same.
+        The residence addresses are the same if the street, city, state, and zip are the same.
+        """
+        is_same_street = self._manifest._fdata.get(f"$.applications[{index}].borrower.mailingAddress.addressStreetLine1") \
+        == self._manifest._fdata.get(f"$.applications[{index}].coborrower.mailingAddress.addressStreetLine1")
+        is_same_state = self._manifest._fdata.get(f"$.applications[{index}].borrower.mailingAddress.addressState") \
+        == self._manifest._fdata.get(f"$.applications[{index}].coborrower.mailingAddress.addressState")
+        is_same_city = self._manifest._fdata.get(f"$.applications[{index}].borrower.mailingAddress.addressCity") \
+        == self._manifest._fdata.get(f"$.applications[{index}].coborrower.mailingAddress.addressCity")
+        is_same_zip = self._manifest._fdata.get(f"$.applications[{index}].borrower.mailingAddress.addressPostalCode") \
+        == self._manifest._fdata.get(f"$.applications[{index}].coborrower.mailingAddress.addressPostalCode")
+        return is_same_street and is_same_state and is_same_city and is_same_zip
+
+
+
+
+    def _remove_duplicate_residences(self):
+        """
+        Remove duplicate residences
+        if the borrower's residence is the same as the coborrowers residence
+        Part of ticket [FTR] CC-01
+        """
+        data_length = len(self._manifest.data['applications'])
+        for i in range(data_length):
+            if self._address_validator(i):
+                self._manifest._fdata.pop(f"$.applications[{i}].coborrower.mailingAddress.addressStreetLine1")
+                self._manifest._fdata.pop(f"$.applications[{i}].coborrower.mailingAddress.addressState")
+                self._manifest._fdata.pop(f"$.applications[{i}].coborrower.mailingAddress.addressPostalCode")
+                self._manifest._fdata.pop(f"$.applications[{i}].coborrower.mailingAddress.addressCity")
+
+
+
+    def _create_shared_address_flag(self):
+        """
+        This method creates a new flag called "shared_address" to determine if the borrower and coborrower share
+        the same address. This method depends on the address_validator method from ticket [FTR] CC-01
+        to determine if the borrower and coborrower live together.
+        The borrower and coborrower live together if they both share the same address
+        """
+        data_length = len(self._manifest.data['applications'])
+        for i in range(data_length):
+            if self._address_validator(i):
+                self._manifest._fdata.__setitem__(f"$.applications[{i}].shared_address", True)
+            else:
+                self._manifest._fdata.__setitem__(f"$.applications[{i}].shared_address", False)
+
+
+
+
+
     # Instance methods
     def get_projection(self):
         """Generate the projection for the given manifest.
@@ -361,8 +418,10 @@ class JSONFactory:
 
         """
         queries, record = [], {}
+        #call these methods before generating projection
+        self._create_shared_address_flag()
+        self._remove_duplicate_residences()
         for path, value in self._manifest:
-
             # Prioritize non-queries before queries
             if '?' in path:
                 queries.append((path, value))
@@ -372,5 +431,6 @@ class JSONFactory:
 
         for path, value in queries:
             self.insert_query(path, value, record)
+
 
         return record
