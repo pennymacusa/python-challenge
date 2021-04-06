@@ -47,9 +47,10 @@ def main(event, context=None):  # pylint: disable=unused-argument
 
     # Load all rules
     project = Project()
-    rules = [rule for _ in project.resources.values() for rule in _]
-    logger.info('Service loaded rules: %s', json.dumps(rules, indent=2))
 
+    rules = [rule for _ in project.resources.values() for rule in _]
+
+    logger.info('Service loaded rules: %s', json.dumps(rules, indent=2))
     # Confirm event is valid EventBridge -> SQS payload
     loans = []
     for record in event.get('Records', [{}]):
@@ -70,8 +71,48 @@ def main(event, context=None):  # pylint: disable=unused-argument
             )
             continue
 
-    logger.info('Service recieved loans: %s', json.dumps(loans, indent=2))
+    logger.info('Service received loans: %s', json.dumps(loans, indent=2))
 
+
+    #added bug fix for CC-03
+    applications = loans[0]['applications']
+    applications_size = len(applications)
+    #load application rules
+    application_rules = [rule['source'] for rule in rules]
+
+    #add new rules based on size of applications
+
+    for i in range(applications_size):
+        if f"$.applications[{i}].borrower" not in application_rules and f"$.applications[{i}].coborrower" not in application_rules:
+            #Add multiple residences in report
+            rules.append({'source': f"$.applications[{i}].borrower.mailingAddress.addressStreetLine1",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i}].street"})
+            rules.append({'source': f"$.applications[{i}].borrower.mailingAddress.addressState",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i}].state"})
+            rules.append({'source': f"$.applications[{i}].borrower.mailingAddress.addressCity",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i}].city"})
+            rules.append({'source': f"$.applications[{i}].borrower.mailingAddress.addressPostalCode",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i}].zip"})
+            rules.append({'source': f"$.applications[{i}].coborrower.mailingAddress.addressStreetLine1",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i+1}].street"})
+            rules.append({'source': f"$.applications[{i}].coborrower.mailingAddress.addressState",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i+1}].state"})
+            rules.append({'source': f"$.applications[{i}].coborrower.mailingAddress.addressCity",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i+1}].city"})
+            rules.append({'source': f"$.applications[{i}].coborrower.mailingAddress.addressPostalCode",'target':f"$.reports[?(@.title == 'Residences Report')].residences[{2*i+1}].zip"})
+            #Add multiple borrowers in report
+            #Borrowers in report are indexed as even numbers in borrowers list
+            #Coborrowers in report are indexed as odd numbers in borrowers list
+            rules.append({'source':f"$.applications[{i}].borrower.firstName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i}].first_name" })
+            rules.append({'source':f"$.applications[{i}].borrower.lastName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i}].last_name" })
+            rules.append({'source':f"$.applications[{i}].coborrower.firstName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i+1}].first_name" })
+            rules.append({'source':f"$.applications[{i}].coborrower.lastName", 'target': f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i+1}].last_name" })
+            #borrowers and coborrowers both have a shared address flag
+            #each borrower and coborrower share a shared_address flag.
+            #each borrower's shared address flag matches each respective coborrower's shared address flag
+            #in other words, each borrower will share the same shared address flag boolean value
+            # as the borrower's respective coborrower
+            rules.append({
+                "source": f"$.applications[{i}].shared_address",
+                "target": f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i}].shared_address"
+            })
+            rules.append({
+                    "source": f"$.applications[{i}].shared_address",
+                    "target": f"$.reports[?(@.title == 'Borrowers Report')].borrowers[{2*i+1}].shared_address"
+            })
     # Generate Manifests
     reports = []
     for loan in loans:
@@ -88,4 +129,5 @@ def main(event, context=None):  # pylint: disable=unused-argument
         reports.extend(projection.get('reports', []))
 
     # Reformat report output and return
+
     return {'reports': reports}

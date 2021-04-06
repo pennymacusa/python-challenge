@@ -9,11 +9,151 @@
           "state": "TX",
           "zip": "75028"
         },
+        {},
         {
-          "street": "123 EXAMPLE PKWY.",
-          "city": "FLOWER MOUND",
+          "street": "246 EXAMPLE PKWY.",
           "state": "TX",
+          "city": "TOWER MOUND",
           "zip": "75028"
+        },
+        {
+          "street": "891 EXAMPLE PKWY.",
+          "state": "TX",
+          "city": "TOWER MOUND",
+          "zip": "75028"
+        },
+        {
+          "street": "123 STAR AVE.",
+          "state": "CA",
+          "city": "HOLLYWOOD",
+          "zip": "55228"
+        },
+        {},
+        {
+          "street": "555 PARK AVE.",
+          "state": "TX",
+          "city": "DALLAS",
+          "zip": "98289"
+        },
+        {
+          "street": "123 PARK AVE.",
+          "state": "TX",
+          "city": "DALLAS",
+          "zip": "98289"
+        },
+        {
+          "street": "249 CENTRAL PKWY",
+          "state": "NY",
+          "city": "NEW YORK CITY",
+          "zip": "10025"
+        },
+        {},
+        {
+          "street": "155 GOTHAM ST",
+          "state": "FICTIONAL STATE",
+          "city": "GOTHAM",
+          "zip": "50025"
+        },
+        {
+          "street": "222 METRO ST",
+          "state": "FICTIONAL STATE",
+          "city": "METROPOLIS",
+          "zip": "59955"
+        },
+        {
+          "street": "255 STARK ST",
+          "state": "NY",
+          "city": "NEW YORK CITY",
+          "zip": "50025"
+        },
+        {
+          "street": "955 QUEENS ST",
+          "state": "NY",
+          "city": "NEW YORK CITY",
+          "zip": "59955"
+        },
+        {
+          "street": "221B BAKER STREET",
+          "state": "UK",
+          "city": "LONDON",
+          "zip": "40521"
+        },
+        {},
+        {
+          "street": "111 KINGS ST",
+          "state": "NY",
+          "city": "NEW YORK CITY",
+          "zip": "10089"
+        },
+        {},
+        {
+          "street": "117 HARRISON AVE",
+          "state": "NJ",
+          "city": "JERSEY CITY",
+          "zip": "39045"
+        },
+        {
+          "street": "275 JOHNSON ST",
+          "state": "PA",
+          "city": "PHILADELPHIA",
+          "zip": "95928"
+        },
+        {
+          "street": "555 HAMILTON ST",
+          "state": "NY",
+          "city": "NEW YORK CITY",
+          "zip": "10055"
+        },
+        {},
+        {
+          "street": "125 WILLIAMS ST",
+          "state": "VA",
+          "city": "WILLIAMSBURG",
+          "zip": "50025"
+        },
+        {
+          "street": "155 CHERRYTREE ST",
+          "state": "IL",
+          "city": "CHICAGO",
+          "zip": "29955"
+        },
+        {
+          "street": "915 EUCLID AVE",
+          "state": "NJ",
+          "city": "PRINCETON",
+          "zip": "12005"
+        },
+        {},
+        {
+          "street": "999 ROCKET ST",
+          "state": "TX",
+          "city": "AUSTIN",
+          "zip": "50025"
+        },
+        {
+          "street": "314 MOUNTAIN AVE",
+          "state": "CA",
+          "city": "MOUNTAIN VIEW",
+          "zip": "49815"
+        },
+        {
+          "street": "815 SUNFLOWER AVE",
+          "state": "CA",
+          "city": "LOS ANGELES",
+          "zip": "22845"
+        },
+        {},
+        {
+          "street": "199 GLENMONT AVE",
+          "state": "NJ",
+          "city": "WEST ORANGE",
+          "zip": "11255"
+        },
+        {
+          "street": "481 8TH AVE",
+          "state": "NY",
+          "city": "NEW YORK CITY",
+          "zip": "10099"
         }
       ]
     },
@@ -22,11 +162,163 @@
       "borrowers": [
         {
           "first_name": "JANE",
-          "last_name": "DOE"
+          "last_name": "DOE",
+          "shared_address": true
         },
         {
           "first_name": "JOHN",
-          "last_name": "DOE"
+          "last_name": "DOE",
+          "shared_address": true
+        },
+        {
+          "first_name": "LUKE",
+          "last_name": "SKYWALKER",
+          "shared_address": false
+        },
+        {
+          "first_name": "DARTH",
+          "last_name": "VADER",
+          "shared_address": false
+        },
+        {
+          "first_name": "BILL",
+          "last_name": "GATES",
+          "shared_address": true
+        },
+        {
+          "first_name": "STEVE",
+          "last_name": "JOBS",
+          "shared_address": true
+        },
+        {
+          "first_name": "JACK",
+          "last_name": "DOE",
+          "shared_address": false
+        },
+        {
+          "first_name": "JILL",
+          "last_name": "DOE",
+          "shared_address": false
+        },
+        {
+          "first_name": "JOHN",
+          "last_name": "SMITH",
+          "shared_address": true
+        },
+        {
+          "first_name": "JANE",
+          "last_name": "SMITH",
+          "shared_address": true
+        },
+        {
+          "first_name": "BRUCE",
+          "last_name": "WAYNE",
+          "shared_address": false
+        },
+        {
+          "first_name": "CLARK",
+          "last_name": "KENT",
+          "shared_address": false
+        },
+        {
+          "first_name": "TONY",
+          "last_name": "STARK",
+          "shared_address": false
+        },
+        {
+          "first_name": "PETER",
+          "last_name": "PARKER",
+          "shared_address": false
+        },
+        {
+          "first_name": "SHERLOCK",
+          "last_name": "HOLMES",
+          "shared_address": true
+        },
+        {
+          "first_name": "JOHN",
+          "last_name": "WATSON",
+          "shared_address": true
+        },
+        {
+          "first_name": "JACK",
+          "last_name": "SMITH",
+          "shared_address": true
+        },
+        {
+          "first_name": "JILL",
+          "last_name": "SMITH",
+          "shared_address": true
+        },
+        {
+          "first_name": "ROBERT",
+          "last_name": "JOHNSON",
+          "shared_address": false
+        },
+        {
+          "first_name": "PAUL",
+          "last_name": "MORRISON",
+          "shared_address": false
+        },
+        {
+          "first_name": "ALEXANDER",
+          "last_name": "HAMILTON",
+          "shared_address": true
+        },
+        {
+          "first_name": "JOHN",
+          "last_name": "LAURENS",
+          "shared_address": true
+        },
+        {
+          "first_name": "GEORGE",
+          "last_name": "WASHINGTON",
+          "shared_address": false
+        },
+        {
+          "first_name": "ABRAHAM",
+          "last_name": "LINCOLN",
+          "shared_address": false
+        },
+        {
+          "first_name": "ALAN",
+          "last_name": "TURING",
+          "shared_address": true
+        },
+        {
+          "first_name": "ALBERT",
+          "last_name": "EINSTEIN",
+          "shared_address": true
+        },
+        {
+          "first_name": "ELON",
+          "last_name": "MUSK",
+          "shared_address": false
+        },
+        {
+          "first_name": "LARRY",
+          "last_name": "PAGE",
+          "shared_address": false
+        },
+        {
+          "first_name": "LEBRON",
+          "last_name": "JAMES",
+          "shared_address": true
+        },
+        {
+          "first_name": "MICHAEL",
+          "last_name": "JORDAN",
+          "shared_address": true
+        },
+        {
+          "first_name": "THOMAS",
+          "last_name": "EDISON",
+          "shared_address": false
+        },
+        {
+          "first_name": "NIKOLA",
+          "last_name": "TESLA",
+          "shared_address": false
         }
       ]
     }
